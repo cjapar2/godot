@@ -3255,6 +3255,7 @@ bool TileSet::_get(const StringName &p_name, Variant &r_ret) const {
 			return false;
 		}
 		if (components[1] == "name") {
+			printf('index: %d', index);
 			r_ret = get_custom_data_layer_name(index);
 			return true;
 		} else if (components[1] == "type") {
