@@ -28,8 +28,11 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
+
 #include "tile_set.h"
 
+#include <string>
+#include <iostream>
 #include "core/core_string_names.h"
 #include "core/io/marshalls.h"
 #include "core/math/geometry_2d.h"
@@ -1087,7 +1090,11 @@ void TileSet::set_custom_data_layer_name(int p_layer_id, String p_value) {
 	} else {
 		custom_data_layers_by_name[p_value] = p_layer_id;
 	}
+	
+	// p_value is the name, p_layer_id is the index
 
+	// std::cout << p_value.utf8().ptr() << "\n";
+	// printf("%s", p_value.utf8().get_data());
 	custom_data_layers.write[p_layer_id].name = p_value;
 	emit_changed();
 }
@@ -3120,6 +3127,7 @@ bool TileSet::_set(const StringName &p_name, const Variant &p_value) {
 		} else if (components.size() == 2 && components[0].begins_with("custom_data_layer_") && components[0].trim_prefix("custom_data_layer_").is_valid_int()) {
 			// Custom data layers.
 			int index = components[0].trim_prefix("custom_data_layer_").to_int();
+			// std::cout << index << std::endl;
 			ERR_FAIL_COND_V(index < 0, false);
 			if (components[1] == "name") {
 				ERR_FAIL_COND_V(p_value.get_type() != Variant::STRING, false);
@@ -3255,7 +3263,6 @@ bool TileSet::_get(const StringName &p_name, Variant &r_ret) const {
 			return false;
 		}
 		if (components[1] == "name") {
-			printf('index: %d', index);
 			r_ret = get_custom_data_layer_name(index);
 			return true;
 		} else if (components[1] == "type") {
