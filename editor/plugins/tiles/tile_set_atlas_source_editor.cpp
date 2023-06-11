@@ -761,8 +761,9 @@ void TileSetAtlasSourceEditor::_update_tile_data_editors() {
 	for (int i = 0; i < tile_set->get_custom_data_layers_count(); i++) {
 		String editor_name = vformat("custom_data_%d", i);
 		String prop_name = tile_set->get_custom_data_layer_name(i);
-		printf("-----\nprop_name: %s\ni: %d\neditor_name: %s\n-----\n", prop_name.utf8().get_data(), i, editor_name.utf8().get_data());
 		Variant::Type prop_type = tile_set->get_custom_data_layer_type(i);
+		
+		printf("-----\nprop_name: %s\ni: %d\neditor_name: %s\n-----\n", prop_name.utf8().get_data(), i, editor_name.utf8().get_data());
 
 		if (prop_name.is_empty()) {
 			ADD_TILE_DATA_EDITOR(group, vformat(TTR("Custom Test %d"), i), editor_name);

@@ -289,6 +289,7 @@ void Polygon2DEditor::_uv_edit_popup_hide() {
 }
 
 void Polygon2DEditor::_menu_option(int p_option) {
+	uv_edit_draw->set_texture_filter(node->get_texture_filter_in_tree());
 	EditorUndoRedoManager *undo_redo = EditorUndoRedoManager::get_singleton();
 	switch (p_option) {
 		case MODE_EDIT_UV: {

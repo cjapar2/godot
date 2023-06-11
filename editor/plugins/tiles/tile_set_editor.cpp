@@ -582,6 +582,7 @@ void TileSetEditor::_move_tile_set_array_element(Object *p_undo_redo, Object *p_
 						}
 					} else if (p_array_prefix == "custom_data_layer_") {
 						for (int layer_index = begin; layer_index < end; layer_index++) {
+							printf("layer_index: %d\n", layer_index);
 							ADD_UNDO(tile_data, vformat("custom_data_%d", layer_index));
 						}
 					}
