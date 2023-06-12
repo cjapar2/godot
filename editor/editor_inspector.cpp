@@ -399,6 +399,7 @@ void EditorProperty::_notification(int p_what) {
 
 void EditorProperty::set_label(const String &p_label) {
 	label = p_label;
+	printf("label: %s\n", label.utf8().get_data());
 	queue_redraw();
 }
 
@@ -3248,6 +3249,10 @@ void EditorInspector::update_tree() {
 		for (int i = 0; i < editors.size(); i++) {
 			EditorProperty *ep = Object::cast_to<EditorProperty>(editors[i].property_editor);
 			const Vector<String> &properties = editors[i].properties;
+			printf("-----properties.size(): %d-----\n", properties.size());
+			for (int i = 0; i < properties.size(); i++) {
+				printf("properties[i]: %s\n", properties[i].utf8().get_data());
+			}
 
 			if (ep) {
 				// Set all this before the control gets the ENTER_TREE notification.
@@ -3257,6 +3262,7 @@ void EditorInspector::update_tree() {
 					if (properties.size() == 1) {
 						//since it's one, associate:
 						ep->property = properties[0];
+						// printf("properties[0]: %s\n", properties[0].utf8().get_data());
 						ep->property_path = property_prefix + properties[0];
 						ep->property_usage = p.usage;
 						//and set label?
